@@ -4,7 +4,7 @@ import { getTranslation, locales } from '@/lib/i18n';
 import Hero from '@/app/components/ui/Hero';
 import { useState, useEffect } from 'react';
 import { Link,Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,Button, Drawer, DrawerContent, DrawerBody, DrawerHeader, useDisclosure } from '@heroui/react';
-import { DynamicRePublishPanel } from '@/app/components/dynamic/DynamicComponents';
+import DynamicRePublishPanel from '@/app/components/ui/DynamicRePublishPanel';
 import { RiArrowDropDownLine } from "@remixicon/react";
 import { parseTweetData } from '@/lib/parser';
 import TweetCard from '@/app/components/ui/TweetCard';
