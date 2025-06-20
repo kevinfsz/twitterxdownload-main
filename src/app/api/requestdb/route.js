@@ -125,6 +125,10 @@ export async function GET(request) {
       success: true, 
       count: count,
       data: allData 
+    }, {
+      headers: {
+        'Cache-Control': action === 'recent' ? 'public, s-maxage=300, stale-while-revalidate=600' : 'public, s-maxage=3600'
+      }
     });
   } catch (error) {
     return Response.json({ 

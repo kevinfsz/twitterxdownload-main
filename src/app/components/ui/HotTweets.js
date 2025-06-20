@@ -13,7 +13,7 @@ export default async function HotTweets({ locale = 'en' }) {
     const protocol = headersList.get('x-forwarded-proto') || 'http'
     const baseUrl = `${protocol}://${host}`
     const tweetsResp = await fetch(`${baseUrl}/api/requestdb?action=recent`,{
-        cache: 'no-store'
+        next: { revalidate: 300 } // 缓存5分钟
     });
     const tweetsData = await tweetsResp.json();
     

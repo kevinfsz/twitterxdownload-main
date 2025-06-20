@@ -4,7 +4,7 @@ import { getTranslation, locales } from '@/lib/i18n';
 import Hero from '@/app/components/ui/Hero';
 import { useState, useEffect } from 'react';
 import { Link,Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,Button, Drawer, DrawerContent, DrawerBody, DrawerHeader, useDisclosure } from '@heroui/react';
-import RePublishPanel from '@/app/components/ui/RePublishPanel';
+import { DynamicRePublishPanel } from '@/app/components/dynamic/DynamicComponents';
 import { RiArrowDropDownLine } from "@remixicon/react";
 import { parseTweetData } from '@/lib/parser';
 import TweetCard from '@/app/components/ui/TweetCard';
@@ -184,7 +184,7 @@ export default function Downloader({ params: { locale } }) {
                         <div className="text-medium font-semibold">{t('Re-Publish')}</div>
                     </DrawerHeader>
                     <DrawerBody>
-                        <RePublishPanel locale={locale} tweets={tweets} onClose={()=>{
+                        <DynamicRePublishPanel locale={locale} tweets={tweets} onClose={()=>{
                             onOpenChange(false);
                         }} />
                     </DrawerBody>

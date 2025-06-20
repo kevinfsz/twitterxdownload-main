@@ -1,6 +1,7 @@
 import { getTranslation } from "@/lib/i18n";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
+import Image from "next/image";
 import { parseTweetData } from "@/lib/parser";
 import ShareButtons from "@/app/components/ui/ShareButtons";
 import Explore from "@/app/components/ui/Explore";
@@ -101,9 +102,28 @@ export default async function TweetDetail({params}) {
                         { 
                             tweet.medias.map((media, index) => {
                                 if(media.type==="photo"){
-                                    return <img src={media.url} alt={media.alt} />
+                                    return (
+                                        <div key={index} className="relative w-full h-96 my-4">
+                                            <Image 
+                                                src={media.url} 
+                                                alt={media.alt || "Tweet image"} 
+                                                fill
+                                                className="rounded-lg object-contain"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                                            />
+                                        </div>
+                                    )
                                 }else if(media.type==="video"){
-                                    return <video controls src={media.url} alt={media.alt} />
+                                    return (
+                                        <video 
+                                            key={index}
+                                            controls 
+                                            src={media.url} 
+                                            alt={media.alt || "Tweet video"}
+                                            className="w-full rounded-lg my-4"
+                                            preload="metadata"
+                                        />
+                                    )
                                 }
                             })
                         }

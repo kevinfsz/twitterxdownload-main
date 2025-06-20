@@ -6,6 +6,7 @@ import { getTranslation } from "@/lib/i18n";
 import ConfirmModal from "./ConfirmModal";
 import ClientTimeDisplay from "./ClientTimeDisplay";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function TweetCard({ tweet,enableEdit = false,locale='en', className,onDeleteTweet,onInsertTweet,onAddMedia,onDeleteMedia,onUpdateText }) {
     
@@ -18,11 +19,25 @@ export default function TweetCard({ tweet,enableEdit = false,locale='en', classN
     const getMediaDom = (mediaUrl) => {
         if (mediaUrl.includes('.mp4') || mediaUrl.startsWith('data:video/mp4')) {
             return (
-                <video controls src={mediaUrl} alt="Tweet media" className="w-full h-full rounded-lg object-cover" />
+                <video 
+                    controls 
+                    src={mediaUrl} 
+                    alt="Tweet media" 
+                    className="w-full h-full rounded-lg object-cover"
+                    preload="metadata"
+                />
             )
         }
         return (
-            <img src={mediaUrl} alt="Tweet media" className="w-full h-full rounded-lg object-cover" />
+            <Image 
+                src={mediaUrl} 
+                alt="Tweet media" 
+                fill
+                className="rounded-lg object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={false}
+                loading="lazy"
+            />
          )
     }
 
