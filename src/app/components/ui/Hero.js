@@ -3,12 +3,12 @@ import { getTranslation } from '@/lib/i18n';
 import { Button, addToast, ToastProvider } from '@heroui/react';
 import { RiDownloadLine } from '@remixicon/react';
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Hero({ locale = 'en', 
     downloadButtonLabel = 'Download', 
     downloadButtonIsLoading = false,
     remainApiCount = 0,
-    onDownload = (url) => {}, 
     url = ''
 }) {
     const t = function (key) {
@@ -16,6 +16,7 @@ export default function Hero({ locale = 'en',
     }
 
     const inputRef = useRef(null);
+    const router = useRouter();
 
     return (
         <>
@@ -77,7 +78,8 @@ export default function Hero({ locale = 'en',
                                 return;
                             }
 
-                            onDownload(text);
+                            // 使用客户端路由导航
+                            router.push(`/downloader?url=${encodeURIComponent(text)}`);
                         }}
                         isLoading={downloadButtonIsLoading}
                         spinnerPlacement="end"

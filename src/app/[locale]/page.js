@@ -3,7 +3,7 @@ import HotTweets from '@/app/components/ui/HotTweets';
 import FAQ from '@/app/components/ui/FAQ';
 import HotCreators from '@/app/components/ui/HotCreators';
 import Hero from '@/app/components/ui/Hero';
-import LazySection from '@/app/components/ui/LazySection';
+// import LazySection from '@/app/components/ui/LazySection';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers'
 
@@ -27,24 +27,17 @@ export default async function Home({ params: { locale } }) {
     <>
       <div className="page-container">
         <div className="section">
-          <Hero locale={locale} remainApiCount={remainApiCount} onDownload={async (url) => {
-            'use server';
-            redirect(`/downloader?url=${url}`);
-          }} />
+          <Hero locale={locale} remainApiCount={remainApiCount} url={""} />
         </div>
         {process.env.NEXT_PUBLIC_HOME_LISTING != 0 && (
         <>
-          <LazySection fallback={<div className="section h-48 bg-gray-100 animate-pulse rounded-lg"></div>}>
-            <div className="section">
-              <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Creators')}</h3>
-              <HotCreators locale={locale} />
-            </div>
-          </LazySection>
-          <LazySection fallback={<div className="section h-96 bg-gray-100 animate-pulse rounded-lg"></div>}>
-            <div className="section">
-              <HotTweets locale={locale} />
-            </div>
-          </LazySection>
+          <div className="section">
+            <h3 className="text-2xl font-bold px-2 py-4">{t('Hot Creators')}</h3>
+            <HotCreators locale={locale} />
+          </div>
+          <div className="section">
+            <HotTweets locale={locale} />
+          </div>
         </>
         )}
         <div className="section">
