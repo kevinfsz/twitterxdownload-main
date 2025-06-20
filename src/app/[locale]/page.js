@@ -3,7 +3,7 @@ import HotTweets from '@/app/components/ui/HotTweets';
 import FAQ from '@/app/components/ui/FAQ';
 import HotCreators from '@/app/components/ui/HotCreators';
 import Hero from '@/app/components/ui/Hero';
-// import LazySection from '@/app/components/ui/LazySection';
+
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers'
 
